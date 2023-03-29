@@ -1,0 +1,546 @@
+{
+    :devices {
+        :zmk [{:vendor_id 7504 :product_id 24926}]
+        :mac-keys [{:vendor_id 1452 :product_id 641}]
+        }
+    :input-sources {
+        :ru {:input_source_id "com.apple.keylayout.Russian"
+                :language "ru"}
+        :en {:input_source_id "com.apple.keylayout.US"
+                :language "en"}
+        }
+    :applications {
+        :iterm2   ["^com\\.googlecode\\.iterm2$"]
+        :vscode   ["^com\\.microsoft\\.VSCode$"]
+        :bear     ["^net\\.shinyfrog\\.bear$"]
+        :ffox     ["^org\\.mozilla\\.firefox$"]
+        :zoom     ["^us\\.zoom\\.xos$"]
+        :discord  ["^com\\.hnc\\.Discord$"]
+        :telegram ["^ru\\.keepcoder\\.Telegram$"]
+        }
+    :templates {
+        :alfred "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"%s\" in workflow \"%s\" with argument \"%s\"'"
+        :app "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"app: launch\" in workflow \"pw.xff.alfred.apps-launcher\" with argument \"%s\"'"
+        :km "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"%s\"'"
+        :raycast "open -g raycast://extensions/%s/%s/%s"
+        :open "open %s"
+        }
+
+    :main [
+
+        {:des "Num Layers" :rules [
+            [:1 ["1L" 1] :zmk {:afterup ["1L" 0]}]
+            [:2 ["2L" 1] :zmk {:afterup ["2L" 0]}]
+            [:3 ["3L" 1] :zmk {:afterup ["3L" 0]}]
+            [:4 ["4L" 1] :zmk {:afterup ["4L" 0]}]
+            [:5 ["5L" 1] :zmk {:afterup ["5L" 0]}]
+            [:6 ["6L" 1] :zmk {:afterup ["6L" 0]}]
+            [:7 ["7L" 1] :zmk {:afterup ["7L" 0]}]
+            [:8 ["8L" 1] :zmk {:afterup ["8L" 0]}]
+            [:9 ["9L" 1] :zmk {:afterup ["9L" 0]}]
+            [:0 ["10L" 1] :zmk {:afterup ["10L" 0]}]
+            [:hyphen ["11L" 1] :zmk {:afterup ["11L" 0]}]
+            [:equal_sign ["12L" 1] :zmk {:afterup ["12L" 0]}]
+
+            [:1 nil :mac-keys {
+                :alone {:key :1 :halt true}
+                :held {:set ["1L" 1] :repeat false}
+                :afterup {:set ["1L" 0]}
+                :params {:alone 149 :held 150 :delay 150}
+                }]
+            [:2 nil :mac-keys {
+                :alone {:key :2 :halt true}
+                :held {:set ["2L" 1] :repeat false}
+                :afterup {:set ["2L" 0]}
+                :params {:alone 149 :held 150 :delay 150}
+                }]
+            [:3 nil :mac-keys {
+                :alone {:key :3 :halt true}
+                :held {:set ["3L" 1] :repeat false}
+                :afterup {:set ["3L" 0]}
+                :params {:alone 149 :held 150 :delay 150}
+                }]
+            [:4 nil :mac-keys {
+                :alone {:key :4 :halt true}
+                :held {:set ["4L" 1] :repeat false}
+                :afterup {:set ["4L" 0]}
+                :params {:alone 149 :held 150 :delay 150}
+                }]
+            [:5 nil :mac-keys {
+                :alone {:key :5 :halt true}
+                :held {:set ["5L" 1] :repeat false}
+                :afterup {:set ["5L" 0]}
+                :params {:alone 149 :held 150 :delay 150}
+                }]
+            [:6 nil :mac-keys {
+                :alone {:key :6 :halt true}
+                :held {:set ["6L" 1] :repeat false}
+                :afterup {:set ["6L" 0]}
+                :params {:alone 149 :held 150 :delay 150}
+                }]
+            [:7 nil :mac-keys {
+                :alone {:key :7 :halt true}
+                :held {:set ["7L" 1] :repeat false}
+                :afterup {:set ["7L" 0]}
+                :params {:alone 149 :held 150 :delay 150}
+                }]
+            [:8 nil :mac-keys {
+                :alone {:key :8 :halt true}
+                :held {:set ["8L" 1] :repeat false}
+                :afterup {:set ["8L" 0]}
+                :params {:alone 149 :held 150 :delay 150}
+                }]
+            [:9 nil :mac-keys {
+                :alone {:key :9 :halt true}
+                :held {:set ["9L" 1] :repeat false}
+                :afterup {:set ["9L" 0]}
+                :params {:alone 149 :held 150 :delay 150}
+                }]
+            [:0 nil :mac-keys {
+                :alone {:key :0 :halt true}
+                :held {:set ["10L" 1] :repeat false}
+                :afterup {:set ["10L" 0]}
+                :params {:alone 149 :held 150 :delay 150}
+                }]
+            [:hyphen nil :mac-keys {
+                :alone {:key :hyphen :halt true}
+                :held {:set ["11L" 1] :repeat false}
+                :afterup {:set ["11L" 0]}
+                :params {:alone 149 :held 150 :delay 150}
+                }]
+            [:equal_sign nil :mac-keys {
+                :alone {:key :equal_sign :halt true}
+                :held {:set ["12L" 1] :repeat false}
+                :afterup {:set ["12L" 0]}
+                :params {:alone 149 :held 150 :delay 150}
+                }]
+            ]}
+
+        {:des "9L keys (display/volume/network)" :rules [
+            :9L
+            
+            [:t :display_brightness_increment]
+            [:g :display_brightness_decrement]
+            [:b [:alfred "dark light toggle" "com.lisongcheng.daynight"]]
+
+            [:r :volume_increment]
+            [:f :volume_decrement]
+            [:v [:alfred "sound: switch" "com.mw98.sound-switcher"]]
+
+            ;; 2 tap
+            [:d [ [:alfred "wifi: up" "pw.xff.alfred.wifi-switcher"] ["9Lc2T" 0] ] :9Lc2T ] 
+            ;; 1 tap
+            [:d [ ["9Lc2T" 1] ] nil {
+                :alone [:alfred "wifi: down" "pw.xff.alfred.wifi-switcher"]
+                :delayed { :invoked  ["9Lc2T" 0] :canceled ["9Lc2T" 0]}
+                :params {:delay 200 :alone 201}
+                }]
+
+            ;; 2 tap
+            [:c [ [:alfred "vpn: show all" "dk.rodalgaard.alfred.network"] ["9Lc2T" 0] ] :9Lc2T ] 
+            ;; 1 tap
+            [:c [ ["9Lc2T" 1] ] nil {
+                :alone [:alfred "vpn: toggle fab" "dk.rodalgaard.alfred.network"]
+                :delayed { :invoked  ["9Lc2T" 0] :canceled ["9Lc2T" 0]}
+                :params {:delay 200 :alone 201}
+                }]
+            
+            ]}
+        
+        {:des "10L keys (code)" :rules [
+            :10L
+            
+            ;; 2 tap
+            [:c [ [:raycast "thomas" "visual-studio-code" "index"] ["10Lc2T" 0] ] :10Lc2T ] 
+            ;; 1 tap
+            [:c [ ["10Lc2T" 1] ] nil {
+                :alone [:app "vscode"]
+                :delayed { :invoked  ["10Lc2T" 0] :canceled ["10Lc2T" 0]}
+                :params {:delay 200 :alone 201}
+            }]
+
+            [:b [:raycast "raycast" "floating-notes" "toggle-floating-notes-window"]]
+            [:r [:raycast "tonka3000" "gitlab" "mr_my"]]
+            [:g [:open "https://git.fabrique.studio"]]
+            [:y [:open "https://youtrack.fabrique.studio"]]
+
+            ]}
+        
+        {:des "12L keys (meetings)" :rules [
+            :12L
+
+            [:c [:app "camo"]]
+            [:d [:app "discord"]]
+            [:z [:app "zoom"]]
+            [:a [:app "hijack"]]
+            [:t [:app "teams"]]
+            
+            
+            ]}
+
+        {:des "Internal keyboard" :rules [
+            :mac-keys
+
+            ;; HYPER keys
+            [:##right_command :!CTOleft_shift] 
+            [:##caps_lock nil nil {
+                :alone {:key :caps_lock :halt true}
+                :held {:key :!CTOleft_shift :repeat true}
+                :params {:alone 149 :held 150 :delay 150}
+                }]
+            ]}
+
+        {:des "Utility (Enter/Tab/Caps/...)" :rules [
+            [:!Cf21 :!Cgrave_accent_and_tilde :zmk]     ;; CMD + `
+            ;; [:!Tf21 :!Tgrave_accent_and_tilde]       ;; Control + `
+            [{:sim [:d :f] :modi {                      ;; CapsLock
+                    :optional [
+                        :left_command
+                        :left_shift
+                        :left_control
+                        :left_option
+                        :caps_lock
+                        ]}}
+                :caps_lock
+                nil
+                {:params {:sim 30}}
+                ]
+            [{:sim [:s :f] :modi {                      ;; Tab
+                    :optional [
+                        :left_command
+                        :left_shift
+                        :left_control
+                        :left_option
+                        :caps_lock
+                        ]}}
+                :tab
+                nil
+                {:params {:sim 50}}
+                ]
+            [{:sim [:j :l] :modi {                      ;; Enter
+                    :optional [
+                        :left_command
+                        :left_shift
+                        :left_control
+                        :left_option
+                        :caps_lock
+                        ]}}
+                :return_or_enter
+                nil
+                {:params {:sim 50}}
+                ]
+            ]}
+
+        {:des "M0 Layer" :rules [
+            [:f20 ["M0" 1] :zmk {:afterup ["M0" 0]}]
+            [:open_bracket nil :mac-keys {
+                :alone {:key :open_bracket :halt true}
+                :held {:set ["M0" 1] :repeat false}
+                :afterup {:set ["M0" 0]}
+                :params {:alone 149 :held 150 :delay 150}
+                }]
+
+            [:condi :M0]
+            
+            ;; VSCode
+            [:r :!OCopen_bracket :vscode]     ;; fold
+            [:t :!OCclose_bracket :vscode]    ;; unfold
+            [:d :!OCleft_arrow :vscode]       ;; prev tab
+            [:f :!OCright_arrow :vscode]      ;; next tab
+
+            ;; Bear
+            [:period :!CS9 :bear]             ;; short date
+
+            ;; FireFox
+            [:d :!OCleft_arrow :ffox]         ;; prev tab
+            [:f :!OCright_arrow :ffox]        ;; next tab
+            [:e :!CSOclose_bracket :ffox]     ;; picture-in-picture
+
+            ;; Zoom
+            [:a :!CSa :zoom]                  ;; toggle mic
+            [:v :!CSv :zoom]                  ;; toggle video
+            
+            ;; Discord
+            [:a :!CSm :discord]               ;; mute mic
+
+            ]}
+
+        {:des "M1 Layer" :rules [
+            :zmk
+
+            ;; ~
+            [:!Sf21 :!Sgrave_accent_and_tilde :en]
+            [:!Sf21 :!Om :ru]
+            ;; `
+            [:f21 ["M1" 1] :en {:afterup ["M1" 0] :alone :grave_accent_and_tilde}]
+            [:f21 ["M1" 1] :ru {:afterup ["M1" 0] :alone :!OS0}]
+
+            ;; F1-F12 keys
+            [:##u :f1 :M1]
+            [:##i :f2 :M1]
+            [:##o :f3 :M1]
+            [:##j :f4 :M1]
+            [:##k :f5 :M1]
+            [:##l :f6 :M1]
+            [:##m :f7 :M1]
+            [:##comma :f8 :M1]
+            [:##period :f9 :M1]
+            [:##y :f10 :M1]
+            [:##h :f11 :M1]
+            [:##n :f12 :M1]
+
+            ;; HYPER keys (left side)
+            [:q :!!q :M1]
+            [:w :!!w :M1]
+            [:e :!!e :M1]
+            [:r :!!r :M1]
+            [:t :!!t :M1]
+            [:a :!!a :M1]
+            [:s :!!s :M1]
+            [:d :!!d :M1]
+            [:f :!!f :M1]
+            [:g :!!g :M1]
+            [:z :!!z :M1]
+            [:x :!!x :M1]
+            [:c :!!c :M1]
+            [:v :!!v :M1]
+            [:b :!!b :M1]
+            [:spacebar :!!spacebar :M1]
+
+            ]}
+        
+        {:des "M2 Layer" :rules [
+            :zmk
+            [:#Cf22 ["M2" 1] nil {:afterup ["M2" 0]}]
+            
+            ;; ITerm2 fixes
+            [:r :!Tr [:M2 :iterm2]]
+            [:c :!Tc [:M2 :iterm2]]
+            [:a :!Ta [:M2 :iterm2]]
+            [:d :!Td [:M2 :iterm2]]
+            [:!Ci :!CTup_arrow [:M2 :M4 :iterm2]]
+            [:!Ck :!CTdown_arrow [:M2 :M4 :iterm2]]
+            [:!Cj :!CTleft_arrow [:M2 :M4 :iterm2]]
+            [:!Cl :!CTright_arrow [:M2 :M4 :iterm2]]
+
+            
+            ;; media keys
+            [:escape :volume_increment :M2]
+            [:left_shift :volume_decrement :M2]
+
+            ;; display
+            [:t :display_brightness_increment :M2]
+            [:g :display_brightness_decrement :M2]
+
+            ;; screenshots
+            [:q :!CS4 :M2]
+
+            [:##u :1 :M2]
+            [:##i :2 :M2]
+            [:##o :3 :M2]
+            [:##j :4 :M2]
+            [:##k :5 :M2]
+            [:##l :6 :M2]
+            [:##m :7 :M2]
+            [:##comma :8 :M2]
+            [:##period :9 :M2]
+            [:##slash :0 :M2]
+            ]}
+
+        {:des "M3 Layer" :rules [
+            ;; q w e { }       @ # : ; ^
+            ;; = s & [ ]       - " ' * ! $
+            ;; % < > ( )       _ + , . ?
+ 
+            :zmk
+            [:#Sf23 ["M3" 1] nil {:afterup ["M3" 0]}]
+            ;; ъ
+            [:#Sq :close_bracket [:M3 :ru]]
+            ;; щ
+            [:#Sw :o [:M3 :ru]]
+            ;; ё
+            [:#Ss :backslash [:M3 :ru]]
+            ;; {
+            [:r :!O9 [:M3 :ru]]
+            [:r :!Sopen_bracket [:M3 :en]]
+            ;; }
+            [:t :!O0 [:M3 :ru]]
+            [:t :!Sclose_bracket [:M3 :en]]
+            ;; @
+            [:y :!O2 [:M3 :ru]]
+            [:y :!S2 [:M3 :en]]
+            ;; #
+            [:u :!O3 [:M3 :ru]]
+            [:u :!S3 [:M3 :en]]
+            ;; :
+            [:i :!S5 [:M3 :ru]]
+            [:i :!Ssemicolon [:M3 :en]]
+            ;; ;
+            [:o :!S8 [:M3 :ru]]
+            [:o :semicolon [:M3 :en]]
+            ;; ^
+            [:p :!O6 [:M3 :ru]]
+            [:p :!S6 [:M3 :en]]
+            ;; =
+            [:a :equal_sign [:M3 :ru]]
+            [:a :equal_sign [:M3 :en]]
+            ;; &
+            [:d :!O7 [:M3 :ru]]
+            [:d :!S7 [:M3 :en]]
+            ;; [
+            [:f :!Sgrave_accent_and_tilde [:M3 :ru]]
+            [:f :open_bracket [:M3 :en]]
+            ;; ]
+            [:g :grave_accent_and_tilde [:M3 :ru]]
+            [:g :close_bracket [:M3 :en]]
+            ;; -
+            [:h :hyphen [:M3 :ru]]
+            [:h :hyphen [:M3 :en]]
+            ;; "
+            [:j :!S2 [:M3 :ru]]
+            [:j :!Squote [:M3 :en]]
+            ;; '
+            [:k :!SO9 [:M3 :ru]]
+            [:k :quote [:M3 :en]]
+            ;; *
+            [:l :!O8 [:M3 :ru]]
+            [:l :!S8 [:M3 :en]]
+            ;; !
+            [:semicolon :!S1 [:M3 :ru]]
+            [:semicolon :!S1 [:M3 :en]]
+            ;; $
+            [:quote :!O4 [:M3 :ru]]
+            [:quote :!S4 [:M3 :en]]
+            ;; %
+            [:z :!S4 [:M3 :ru]]
+            [:z :!S5 [:M3 :en]]
+            ;; <
+            [:x :!Snon_us_backslash [:M3 :ru]]
+            [:x :!Scomma [:M3 :en]]
+            ;; >
+            [:c :non_us_backslash [:M3 :ru]]
+            [:c :!Speriod [:M3 :en]]
+            ;; (
+            [:v :!S9 [:M3 :ru]]
+            [:v :!S9 [:M3 :en]]
+            ;; )
+            [:b :!S0 [:M3 :ru]]
+            [:b :!S0 [:M3 :en]]
+            ;; _
+            [:n :!Shyphen [:M3 :ru]]
+            [:n :!Shyphen [:M3 :en]]
+            ;; +
+            [:m :!Sequal_sign [:M3 :ru]]
+            [:m :!Sequal_sign [:M3 :en]]
+            ;; ,
+            [:comma :!S6 [:M3 :ru]]
+            [:comma :comma [:M3 :en]]
+            ;; .
+            [:period :!S7 [:M3 :ru]]
+            [:period :period [:M3 :en]]
+            ;; 
+            [:slash :!Sslash [:M3 :ru]]
+            [:slash :!Sslash [:M3 :en]]
+            ]}
+        
+        {:des "M4 Layer" :rules [
+            [:##f24 ["M4" 1] :zmk {:afterup ["M4" 0]}]
+            
+            ;; permanent layer on mac-keysw
+            [{:sim [:d :w] :modi {
+                    :optional [
+                        :caps_lock
+                        ]}}
+                [{:set ["M4" 0] :repeat false} {:noti {:id :mynoty :text ""}}]
+                [:mac-keys :M4]
+                {:params {:sim 50}}
+                ]
+            [{:sim [:d :w] :modi {
+                    :optional [
+                        :caps_lock
+                        ]}}
+                [{:set ["M4" 1] :repeat false} {:noti {:id :mynoty :text "M4 Layer"}}]
+                [:mac-keys :!M4]
+                {:params {:sim 50}}
+                ]
+
+            [:condi :M4]
+            ;; arrows and page up/down
+            [:##i :up_arrow]
+            [:##k :down_arrow]
+            [:##j :left_arrow]
+            [:##l :right_arrow]
+            [:##h :home]
+            [:##semicolon :end]
+            [:##u :page_up]
+            [:##m :page_down]
+            
+            [:##delete_or_backspace :delete_forward :!mac-keys]
+
+            ;; mouse
+            [:e {:mkey {:y -1000}}]    ;; up
+            [:d {:mkey {:y 1000}}]     ;; down
+            [:s {:mkey {:x -1000}}]    ;; left
+            [:f {:mkey {:x 1000}}]     ;; right
+            
+            [:#CSy {:pkey :button1}]   ;; button 1
+            [:#CSn {:pkey :button2}]   ;; button 2
+            
+            ;; ⇧ (slow)
+            [:!Se {:mkey {:y -450}}]   ;; up (slow)
+            [:!Sd {:mkey {:y 450}}]    ;; down (slow)
+            [:!Ss {:mkey {:x -450}}]   ;; left (slow)
+            [:!Sf {:mkey {:x 450}}]    ;; right (slow)
+            
+            ;; ⌘ (fast)
+            [:!Ce {:mkey {:y -3072}}]  ;; up (fast)
+            [:!Cd {:mkey {:y 3072}}]   ;; down (fast)
+            [:!Cs {:mkey {:x -3072}}]  ;; left (fast)
+            [:!Cf {:mkey {:x 3072}}]   ;; right (fast)
+
+            ;; ⌃ (mouse wheel)
+            [:!Te {:mkey {:vwheel -32}}]  ;; scroll up
+            [:!Td {:mkey {:vwheel 32}}]   ;; scroll down
+            [:!Ts {:mkey {:hwheel 32}}]   ;; scroll left
+            [:!Tf {:mkey {:hwheel -32}}]  ;; scroll right
+            ]}  
+        
+        {:des "RU layout remap" :rules [
+            [:condi :zmk :ru]
+            [:#So :p]               ;; з one key to the left
+            [:#Sp :open_bracket]    ;; х one key to the left
+            [:!Om :close_bracket]   ;; option ь == ъ
+            ]}
+
+        {:des "Apps simple keys" :rules [
+            [:!Cj :!Creturn_or_enter :telegram]     ;; send message
+            ]}
+
+        ]
+}
+
+;; Keys list:
+;; https://github.com/yqrashawn/GokuRakuJoudo/blob/master/src/karabiner_configurator/keys_info.clj
+
+;; Examples:
+;; https://github.com/nikitavoloboev/config/blob/master/karabiner/karabiner.edn
+;; https://github.com/fabiomcosta/dotfiles/blob/main/home/.config/karabiner.edn
+;; https://github.com/tIsGoud/goku/blob/master/karabiner.edn
+;; https://gist.github.com/narze/1eb7d0f14b6177ea0360f5dc214867b0
+;; https://github.com/jasonrudolph/keyboard
+;; https://github.com/gabriel-gardner/modtap-karabiner
+
+;; !  | means mandatory
+;; #  | means optional
+;; C  | left_command
+;; T  | left_control
+;; O  | left_option
+;; S  | left_shift
+;; F  | fn
+;; Q  | right_command
+;; W  | right_control
+;; E  | right_option
+;; R  | right_shift
+;; P  | caps_lock
+;; !! | mandatory command + control + optional + shift (hyper)
+;; ## | optional any
