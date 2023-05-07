@@ -18,6 +18,7 @@
         :discord  ["^com\\.hnc\\.Discord$"]
         :telegram ["^ru\\.keepcoder\\.Telegram$"]
         :msteams  ["^com\\.microsoft\\.teams$"]
+        :chrome    ["^com\\.google\\.Chrome$"]
         }
     :templates {
         :alfred "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"%s\" in workflow \"%s\" with argument \"%s\"'"
@@ -48,7 +49,7 @@
                 :alone {:key :1 :halt true}
                 :held {:set ["1L" 1] :repeat false}
                 :afterup {:set ["1L" 0]}
-                :params {:alone 149 :held 150 :delay 150}
+                :params {:alone 249 :held 250 :delay 250}
                 }]
             [:2 nil :mac-keys {
                 :alone {:key :2 :halt true}
@@ -118,7 +119,7 @@
                 }]
             ]}
 
-        {:des "9L keys (display/volume/network)" :rules [
+        {:des "9L keys (display/vol[ume/network)" :rules [
             :9L
             
             [:t :display_brightness_increment]
@@ -218,12 +219,13 @@
             :mac-keys
 
             ;; HYPER keys
-            [:##right_command :!CTOleft_shift] 
-            [:##caps_lock nil nil {
-                :alone {:key :caps_lock :halt true}
-                :held {:key :!CTOleft_shift :repeat true}
-                :params {:alone 149 :held 150 :delay 150}
-                }]
+            ;; [:!Pspacebar :!!spacebar]
+            [:##caps_lock :!CTOleft_shift]
+            ;; [:##caps_lock nil nil {
+            ;;     :alone {:key :caps_lock :halt true}
+            ;;     :held {:key :!CTOleft_shift :repeat true}
+            ;;     :params {:alone 149 :held 150 :delay 150}
+            ;;     }]
             ]}
 
         {:des "Utility (Enter/Tab/Caps/...)" :rules [
@@ -237,7 +239,7 @@
                         :left_option
                         :caps_lock
                         ]}}
-                :caps_lock
+                :fn
                 nil
                 {:params {:sim 30}}
                 ]
@@ -269,12 +271,13 @@
 
         {:des "M0 Layer" :rules [
             [:f20 ["M0" 1] :zmk {:afterup ["M0" 0]}]
-            [:open_bracket nil :mac-keys {
-                :alone {:key :open_bracket :halt true}
-                :held {:set ["M0" 1] :repeat false}
-                :afterup {:set ["M0" 0]}
-                :params {:alone 149 :held 150 :delay 150}
-                }]
+            [:right_command ["M0" 1] :mac-keys {:afterup ["M0" 0]}]
+            ;; [:open_bracket nil :mac-keys {
+            ;;     :alone {:key :open_bracket :halt true}
+            ;;     :held {:set ["M0" 1] :repeat false}
+            ;;     :afterup {:set ["M0" 0]}
+            ;;     :params {:alone 149 :held 150 :delay 150}
+            ;;     }]
 
             [:condi :M0]
             
@@ -485,7 +488,7 @@
         {:des "M4 Layer" :rules [
             [:##f24 ["M4" 1] :zmk {:afterup ["M4" 0]}]
             
-            ;; permanent layer on mac-keysw
+            ;; permanent layer on mac-keys
             [{:sim [:d :w] :modi {
                     :optional [
                         :caps_lock
