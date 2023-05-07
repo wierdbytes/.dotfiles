@@ -3,6 +3,21 @@
         :zmk [{:vendor_id 7504 :product_id 24926}]
         :mac-keys [{:vendor_id 1452 :product_id 641}]
         }
+    :simlayer-threshold 300
+    :simlayers {
+        :1L {:key :1 :condi :mac-keys}
+        :2L {:key :2 :condi :mac-keys}
+        :3L {:key :3 :condi :mac-keys}
+        :4L {:key :4 :condi :mac-keys}
+        :5L {:key :5 :condi :mac-keys}
+        :6L {:key :6 :condi :mac-keys}
+        :7L {:key :7 :condi :mac-keys}
+        :8L {:key :8 :condi :mac-keys}
+        :9L {:key :9 :condi :mac-keys}
+        :10L {:key :0 :condi :mac-keys}
+        :11L {:key :hyphen :condi :mac-keys}
+        :12L {:key :equal_sign :condi :mac-keys}
+        }
     :input-sources {
         :ru {:input_source_id "com.apple.keylayout.Russian"
                 :language "ru"}
@@ -18,7 +33,7 @@
         :discord  ["^com\\.hnc\\.Discord$"]
         :telegram ["^ru\\.keepcoder\\.Telegram$"]
         :msteams  ["^com\\.microsoft\\.teams$"]
-        :chrome    ["^com\\.google\\.Chrome$"]
+        :chrome   ["^com\\.google\\.Chrome$"]
         }
     :templates {
         :alfred "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"%s\" in workflow \"%s\" with argument \"%s\"'"
@@ -44,82 +59,117 @@
             [:0 ["10L" 1] :zmk {:afterup ["10L" 0]}]
             [:hyphen ["11L" 1] :zmk {:afterup ["11L" 0]}]
             [:equal_sign ["12L" 1] :zmk {:afterup ["12L" 0]}]
-
-            [:1 nil :mac-keys {
-                :alone {:key :1 :halt true}
-                :held {:set ["1L" 1] :repeat false}
-                :afterup {:set ["1L" 0]}
-                :params {:alone 249 :held 250 :delay 250}
-                }]
-            [:2 nil :mac-keys {
-                :alone {:key :2 :halt true}
-                :held {:set ["2L" 1] :repeat false}
-                :afterup {:set ["2L" 0]}
-                :params {:alone 149 :held 150 :delay 150}
-                }]
-            [:3 nil :mac-keys {
-                :alone {:key :3 :halt true}
-                :held {:set ["3L" 1] :repeat false}
-                :afterup {:set ["3L" 0]}
-                :params {:alone 149 :held 150 :delay 150}
-                }]
-            [:4 nil :mac-keys {
-                :alone {:key :4 :halt true}
-                :held {:set ["4L" 1] :repeat false}
-                :afterup {:set ["4L" 0]}
-                :params {:alone 149 :held 150 :delay 150}
-                }]
-            [:5 nil :mac-keys {
-                :alone {:key :5 :halt true}
-                :held {:set ["5L" 1] :repeat false}
-                :afterup {:set ["5L" 0]}
-                :params {:alone 149 :held 150 :delay 150}
-                }]
-            [:6 nil :mac-keys {
-                :alone {:key :6 :halt true}
-                :held {:set ["6L" 1] :repeat false}
-                :afterup {:set ["6L" 0]}
-                :params {:alone 149 :held 150 :delay 150}
-                }]
-            [:7 nil :mac-keys {
-                :alone {:key :7 :halt true}
-                :held {:set ["7L" 1] :repeat false}
-                :afterup {:set ["7L" 0]}
-                :params {:alone 149 :held 150 :delay 150}
-                }]
-            [:8 nil :mac-keys {
-                :alone {:key :8 :halt true}
-                :held {:set ["8L" 1] :repeat false}
-                :afterup {:set ["8L" 0]}
-                :params {:alone 149 :held 150 :delay 150}
-                }]
-            [:9 nil :mac-keys {
-                :alone {:key :9 :halt true}
-                :held {:set ["9L" 1] :repeat false}
-                :afterup {:set ["9L" 0]}
-                :params {:alone 149 :held 150 :delay 150}
-                }]
-            [:0 nil :mac-keys {
-                :alone {:key :0 :halt true}
-                :held {:set ["10L" 1] :repeat false}
-                :afterup {:set ["10L" 0]}
-                :params {:alone 149 :held 150 :delay 150}
-                }]
-            [:hyphen nil :mac-keys {
-                :alone {:key :hyphen :halt true}
-                :held {:set ["11L" 1] :repeat false}
-                :afterup {:set ["11L" 0]}
-                :params {:alone 149 :held 150 :delay 150}
-                }]
-            [:equal_sign nil :mac-keys {
-                :alone {:key :equal_sign :halt true}
-                :held {:set ["12L" 1] :repeat false}
-                :afterup {:set ["12L" 0]}
-                :params {:alone 149 :held 150 :delay 150}
-                }]
+                ;; перекрыто simlayers
+                ;; [:1 nil :mac-keys {
+                ;;     :alone {:key :1 :halt true}
+                ;;     :held {:set ["1L" 1] :repeat false}
+                ;;     :afterup {:set ["1L" 0]}
+                ;;     :params {:alone 249 :held 250 :delay 0}
+                ;;     }]
+                ;; [:2 nil :mac-keys {
+                ;;     :alone {:key :2 :halt true}
+                ;;     :held {:set ["2L" 1] :repeat false}
+                ;;     :afterup {:set ["2L" 0]}
+                ;;     :params {:alone 149 :held 150 :delay 150}
+                ;;     }]
+                ;; [:3 nil :mac-keys {
+                ;;     :alone {:key :3 :halt true}
+                ;;     :held {:set ["3L" 1] :repeat false}
+                ;;     :afterup {:set ["3L" 0]}
+                ;;     :params {:alone 149 :held 150 :delay 150}
+                ;;     }]
+                ;; [:4 nil :mac-keys {
+                ;;     :alone {:key :4 :halt true}
+                ;;     :held {:set ["4L" 1] :repeat false}
+                ;;     :afterup {:set ["4L" 0]}
+                ;;     :params {:alone 149 :held 150 :delay 150}
+                ;;     }]
+                ;; [:5 nil :mac-keys {
+                ;;     :alone {:key :5 :halt true}
+                ;;     :held {:set ["5L" 1] :repeat false}
+                ;;     :afterup {:set ["5L" 0]}
+                ;;     :params {:alone 149 :held 150 :delay 150}
+                ;;     }]
+                ;; [:6 nil :mac-keys {
+                ;;     :alone {:key :6 :halt true}
+                ;;     :held {:set ["6L" 1] :repeat false}
+                ;;     :afterup {:set ["6L" 0]}
+                ;;     :params {:alone 149 :held 150 :delay 150}
+                ;;     }]
+                ;; [:7 nil :mac-keys {
+                ;;     :alone {:key :7 :halt true}
+                ;;     :held {:set ["7L" 1] :repeat false}
+                ;;     :afterup {:set ["7L" 0]}
+                ;;     :params {:alone 149 :held 150 :delay 150}
+                ;;     }]
+                ;; [:8 nil :mac-keys {
+                ;;     :alone {:key :8 :halt true}
+                ;;     :held {:set ["8L" 1] :repeat false}
+                ;;     :afterup {:set ["8L" 0]}
+                ;;     :params {:alone 149 :held 150 :delay 150}
+                ;;     }]
+                ;; [:9 nil :mac-keys {
+                ;;     :alone {:key :9 :halt true}
+                ;;     :held {:set ["9L" 1] :repeat false}
+                ;;     :afterup {:set ["9L" 0]}
+                ;;     :params {:alone 149 :held 150 :delay 150}
+                ;;     }]
+                ;; [:0 nil :mac-keys {
+                ;;     :alone {:key :0 :halt true}
+                ;;     :held {:set ["10L" 1] :repeat false}
+                ;;     :afterup {:set ["10L" 0]}
+                ;;     :params {:alone 149 :held 150 :delay 150}
+                ;;     }]
+                ;; [:hyphen nil :mac-keys {
+                ;;     :alone {:key :hyphen :halt true}
+                ;;     :held {:set ["11L" 1] :repeat false}
+                ;;     :afterup {:set ["11L" 0]}
+                ;;     :params {:alone 149 :held 150 :delay 150}
+                ;;     }]
+                ;; [:equal_sign nil :mac-keys {
+                ;;     :alone {:key :equal_sign :halt true}
+                ;;     :held {:set ["12L" 1] :repeat false}
+                ;;     :afterup {:set ["12L" 0]}
+                ;;     :params {:alone 149 :held 150 :delay 150}
+                ;;     }]
             ]}
 
-        {:des "9L keys (display/vol[ume/network)" :rules [
+        ;; Не дружит с simlayers
+        ;; {:des "7L keys (window manager)" :rules [
+        ;;     :7L
+            
+        ;;     [{:sim [:left_shift :a] :modi {:optional [:caps_lock]}} [:btt "wm:h01"] nil {:params {:sim 200}}]
+        ;;     [{:sim [:left_shift :s] :modi {:optional [:caps_lock]}} [:btt "wm:h02"] nil {:params {:sim 200}}]
+        ;;     [{:sim [:left_shift :d] :modi {:optional [:caps_lock]}} [:btt "wm:h03"] nil {:params {:sim 200}}]
+        ;;     [{:sim [:left_shift :f] :modi {:optional [:caps_lock]}} [:btt "wm:h04"] nil {:params {:sim 200}}]
+        ;;     [{:sim [:left_shift :g] :modi {:optional [:caps_lock]}} [:btt "wm:h05"] nil {:params {:sim 200}}]
+        ;;     [:left_shift [:btt "wm:h0"]]
+        ;;     [{:sim [:a :s] :modi {:optional [:caps_lock]}} [:btt "wm:h12"] nil {:params {:sim 200}}]
+        ;;     [{:sim [:a :d] :modi {:optional [:caps_lock]}} [:btt "wm:h13"] nil {:params {:sim 200}}]
+        ;;     [{:sim [:a :f] :modi {:optional [:caps_lock]}} [:btt "wm:h14"] nil {:params {:sim 200}}]
+        ;;     [{:sim [:a :g] :modi {:optional [:caps_lock]}} [:btt "wm:h15"] nil {:params {:sim 200}}]
+        ;;     [:a [:btt "wm:h1"]]
+        ;;     [{:sim [:s :d] :modi {:optional [:caps_lock]}} [:btt "wm:h23"] nil {:params {:sim 200}}]
+        ;;     [{:sim [:s :f] :modi {:optional [:caps_lock]}} [:btt "wm:h24"] nil {:params {:sim 200}}]
+        ;;     [{:sim [:s :g] :modi {:optional [:caps_lock]}} [:btt "wm:h25"] nil {:params {:sim 200}}]
+        ;;     [:s [:btt "wm:h2"]]
+        ;;     [{:sim [:d :f] :modi {:optional [:caps_lock]}} [:btt "wm:h34"] nil {:params {:sim 200}}]
+        ;;     [{:sim [:d :g] :modi {:optional [:caps_lock]}} [:btt "wm:h35"] nil {:params {:sim 200}}]
+        ;;     [:d [:btt "wm:h3"]]
+        ;;     [{:sim [:f :g] :modi {:optional [:caps_lock]}} [:btt "wm:h45"] nil {:params {:sim 200}}]
+        ;;     [:f [:btt "wm:h4"]]
+        ;;     [:g [:btt "wm:h5"]]
+
+        ;;     [{:sim [:w :e] :modi {:optional [:caps_lock]}} [:btt "wm:v63"] nil {:params {:sim 200}}]
+        ;;     [{:sim [:e :r] :modi {:optional [:caps_lock]}} [:btt "wm:v30"] nil {:params {:sim 200}}]
+        ;;     [{:sim [:w :r] :modi {:optional [:caps_lock]}} [:btt "wm:v60"] nil {:params {:sim 200}}]
+        ;;     [:w [:btt "wm:v6"]]
+        ;;     [:e [:btt "wm:v4"]]
+        ;;     [:r [:btt "wm:v2"]]
+            
+        ;;     ]}
+
+        {:des "9L keys (display/volume/network)" :rules [
             :9L
             
             [:t :display_brightness_increment]
@@ -147,40 +197,6 @@
                 :delayed { :invoked  ["9Lc2T" 0] :canceled ["9Lc2T" 0]}
                 :params {:delay 200 :alone 201}
                 }]
-            
-            ]}
-        
-        {:des "7L keys (window manager)" :rules [
-            :7L
-            
-            [{:sim [:left_shift :a] :modi {:optional [:caps_lock]}} [:btt "wm:h01"] nil {:params {:sim 200}}]
-            [{:sim [:left_shift :s] :modi {:optional [:caps_lock]}} [:btt "wm:h02"] nil {:params {:sim 200}}]
-            [{:sim [:left_shift :d] :modi {:optional [:caps_lock]}} [:btt "wm:h03"] nil {:params {:sim 200}}]
-            [{:sim [:left_shift :f] :modi {:optional [:caps_lock]}} [:btt "wm:h04"] nil {:params {:sim 200}}]
-            [{:sim [:left_shift :g] :modi {:optional [:caps_lock]}} [:btt "wm:h05"] nil {:params {:sim 200}}]
-            [:left_shift [:btt "wm:h0"]]
-            [{:sim [:a :s] :modi {:optional [:caps_lock]}} [:btt "wm:h12"] nil {:params {:sim 200}}]
-            [{:sim [:a :d] :modi {:optional [:caps_lock]}} [:btt "wm:h13"] nil {:params {:sim 200}}]
-            [{:sim [:a :f] :modi {:optional [:caps_lock]}} [:btt "wm:h14"] nil {:params {:sim 200}}]
-            [{:sim [:a :g] :modi {:optional [:caps_lock]}} [:btt "wm:h15"] nil {:params {:sim 200}}]
-            [:a [:btt "wm:h1"]]
-            [{:sim [:s :d] :modi {:optional [:caps_lock]}} [:btt "wm:h23"] nil {:params {:sim 200}}]
-            [{:sim [:s :f] :modi {:optional [:caps_lock]}} [:btt "wm:h24"] nil {:params {:sim 200}}]
-            [{:sim [:s :g] :modi {:optional [:caps_lock]}} [:btt "wm:h25"] nil {:params {:sim 200}}]
-            [:s [:btt "wm:h2"]]
-            [{:sim [:d :f] :modi {:optional [:caps_lock]}} [:btt "wm:h34"] nil {:params {:sim 200}}]
-            [{:sim [:d :g] :modi {:optional [:caps_lock]}} [:btt "wm:h35"] nil {:params {:sim 200}}]
-            [:d [:btt "wm:h3"]]
-            [{:sim [:f :g] :modi {:optional [:caps_lock]}} [:btt "wm:h45"] nil {:params {:sim 200}}]
-            [:f [:btt "wm:h4"]]
-            [:g [:btt "wm:h5"]]
-
-            [{:sim [:w :e] :modi {:optional [:caps_lock]}} [:btt "wm:v63"] nil {:params {:sim 200}}]
-            [{:sim [:e :r] :modi {:optional [:caps_lock]}} [:btt "wm:v30"] nil {:params {:sim 200}}]
-            [{:sim [:w :r] :modi {:optional [:caps_lock]}} [:btt "wm:v60"] nil {:params {:sim 200}}]
-            [:w [:btt "wm:v6"]]
-            [:e [:btt "wm:v4"]]
-            [:r [:btt "wm:v2"]]
             
             ]}
         
