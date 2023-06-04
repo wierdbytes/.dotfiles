@@ -49,8 +49,7 @@
     :main [
 
         {:des "Num Layers" :rules [
-            ;; [:1 ["1L" 1] :zmk {:afterup ["1L" 0]}]
-            [:1 :!CTOleft_shift :zmk]
+            [:1 ["1L" 1] :zmk {:afterup ["1L" 0]}]
             [:2 ["2L" 1] :zmk {:afterup ["2L" 0]}]
             [:3 ["3L" 1] :zmk {:afterup ["3L" 0]}]
             [:4 ["4L" 1] :zmk {:afterup ["4L" 0]}]
@@ -172,6 +171,23 @@
             
         ;;     ]}
 
+        {:des "1L keys (F-keys)" :rules [
+            :1L
+
+            ;; F1-F12 keys
+            [:##u :f1]
+            [:##i :f2]
+            [:##o :f3]
+            [:##j :f4]
+            [:##k :f5]
+            [:##l :f6]
+            [:##m :f7]
+            [:##comma :f8]
+            [:##period :f9]
+            [:##y :f10]
+            [:##h :f11]
+            [:##n :f12]
+            ]}
         {:des "9L keys (display/volume/network)" :rules [
             :9L
             
@@ -335,47 +351,15 @@
             [:s :!Os :obsidian]
             ]}
 
-        {:des "M1 Layer" :rules [
+        {:des "M1 Layer (HYPER-keys)" :rules [
             :zmk
 
             ;; ~
             [:!Sf21 :!Sgrave_accent_and_tilde :en]
             [:!Sf21 :!Om :ru]
             ;; `
-            [:f21 ["M1" 1] :en {:afterup ["M1" 0] :alone :grave_accent_and_tilde}]
-            [:f21 ["M1" 1] :ru {:afterup ["M1" 0] :alone :!OS0}]
-
-            ;; F1-F12 keys
-            [:##u :f1 :M1]
-            [:##i :f2 :M1]
-            [:##o :f3 :M1]
-            [:##j :f4 :M1]
-            [:##k :f5 :M1]
-            [:##l :f6 :M1]
-            [:##m :f7 :M1]
-            [:##comma :f8 :M1]
-            [:##period :f9 :M1]
-            [:##y :f10 :M1]
-            [:##h :f11 :M1]
-            [:##n :f12 :M1]
-
-            ;; HYPER keys (left side)
-            [:q :!!q :M1]
-            [:w :!!w :M1]
-            [:e :!!e :M1]
-            [:r :!!r :M1]
-            [:t :!!t :M1]
-            [:a :!!a :M1]
-            [:s :!!s :M1]
-            [:d :!!d :M1]
-            [:f :!!f :M1]
-            [:g :!!g :M1]
-            [:z :!!z :M1]
-            [:x :!!x :M1]
-            [:c :!!c :M1]
-            [:v :!!v :M1]
-            [:b :!!b :M1]
-            [:spacebar :!!spacebar :M1]
+            [:f21 :!CTOleft_shift :en {:alone :grave_accent_and_tilde}]
+            [:f21 :!CTOleft_shift :ru {:alone :!OS0}]
 
             ]}
         
