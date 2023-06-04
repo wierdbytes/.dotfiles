@@ -34,6 +34,8 @@
         :telegram ["^ru\\.keepcoder\\.Telegram$"]
         :msteams  ["^com\\.microsoft\\.teams$"]
         :chrome   ["^com\\.google\\.Chrome$"]
+        :brave    ["^com\\.brave\\.Browser$"]
+        :obsidian ["^md\\.obsidian$"]
         }
     :templates {
         :alfred "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"%s\" in workflow \"%s\" with argument \"%s\"'"
@@ -47,7 +49,8 @@
     :main [
 
         {:des "Num Layers" :rules [
-            [:1 ["1L" 1] :zmk {:afterup ["1L" 0]}]
+            ;; [:1 ["1L" 1] :zmk {:afterup ["1L" 0]}]
+            [:1 :!CTOleft_shift :zmk]
             [:2 ["2L" 1] :zmk {:afterup ["2L" 0]}]
             [:3 ["3L" 1] :zmk {:afterup ["3L" 0]}]
             [:4 ["4L" 1] :zmk {:afterup ["4L" 0]}]
@@ -271,7 +274,7 @@
                 nil
                 {:params {:sim 50}}
                 ]
-            [{:sim [:j :l] :modi {                      ;; Enter
+            [{:sim [:j :i] :modi {                     ;; Enter
                     :optional [
                         :left_command
                         :left_shift
@@ -311,6 +314,10 @@
             [:f :!OCright_arrow :ffox]        ;; next tab
             [:e :!CSOclose_bracket :ffox]     ;; picture-in-picture
 
+            ;; Brave
+            [:d :!OCleft_arrow :brave]         ;; prev tab
+            [:f :!OCright_arrow :brave]        ;; next tab
+
             ;; Zoom
             [:a :!CSa :zoom]                  ;; toggle mic
             [:v :!CSv :zoom]                  ;; toggle video
@@ -321,6 +328,11 @@
             ;; MS Teams
             [:a :!CSm :msteams]               ;; mute mic
 
+            ;; Obsidian
+            [:d :!CSopen_bracket :obsidian]
+            [:f :!CSclose_bracket :obsidian]
+            [:a :!Oa :obsidian]
+            [:s :!Os :obsidian]
             ]}
 
         {:des "M1 Layer" :rules [
@@ -381,6 +393,8 @@
             [:!Cj :!CTleft_arrow [:M2 :M4 :iterm2]]
             [:!Cl :!CTright_arrow [:M2 :M4 :iterm2]]
 
+            ;; brave fixes
+            [:spacebar :!Tspacebar [:M2 :brave]]
             
             ;; media keys
             [:escape :volume_increment :M2]
@@ -503,6 +517,7 @@
         
         {:des "M4 Layer" :rules [
             [:##f24 ["M4" 1] :zmk {:afterup ["M4" 0]}]
+            [:non_us_backslash ["M4" 1] :mac-keys {:afterup ["M4" 0]}]
             
             ;; permanent layer on mac-keys
             [{:sim [:d :w] :modi {
