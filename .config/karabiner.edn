@@ -188,6 +188,7 @@
             [:##h :f11]
             [:##n :f12]
             ]}
+
         {:des "9L keys (display/volume/network)" :rules [
             :9L
             
@@ -274,7 +275,7 @@
                         :left_option
                         :caps_lock
                         ]}}
-                :fn
+                :caps_lock
                 nil
                 {:params {:sim 30}}
                 ]
@@ -333,6 +334,8 @@
             ;; Brave
             [:d :!OCleft_arrow :brave]         ;; prev tab
             [:f :!OCright_arrow :brave]        ;; next tab
+            [:a :!Copen_bracket :brave]        ;; back history
+            [:s :!Cclose_bracket :brave]       ;; next history
 
             ;; Zoom
             [:a :!CSa :zoom]                  ;; toggle mic
@@ -401,6 +404,22 @@
             [:##comma :8 :M2]
             [:##period :9 :M2]
             [:##slash :0 :M2]
+            ]}
+
+        {:des "Enter Layer" :rules [
+            :zmk
+            [:return_or_enter ["E1" 1] nil {:afterup ["E1" 0]}]
+            
+            [:condi :E1 :ru]
+            
+            [:c [:c :g :f :c :b :comma :j]]                 ;; спасибо
+            [:s [:t :o :backslash]]                         ;; ещё
+            [:g [:g :j :semicolon :f :k :e :q :c :n :f]]    ;; пожалуйста
+            [:r [:r :j :n :j :h :s :q]]                     ;; который
+            
+            [:condi :E1 :en]
+            
+            [:q [{:select_input_source {:input_source_id "^com\\.apple\\.keylayout\\.Russian$"}} :g :h :b :d :t :n {:select_input_source {:input_source_id "^com\\.apple\\.keylayout\\.US$"}}]] ;; 
             ]}
 
         {:des "M3 Layer" :rules [
@@ -564,9 +583,10 @@
         
         {:des "RU layout remap" :rules [
             [:condi :zmk :ru]
-            [:#So :p]               ;; з one key to the left
-            [:#Sp :open_bracket]    ;; х one key to the left
-            [:!Om :close_bracket]   ;; option ь == ъ
+            [:#So :p]                    ;; з one key to the left
+            [:#Sp :open_bracket]         ;; х one key to the left
+            [:!Om :close_bracket]        ;; option ь == ъ
+            [[:w :s] [:t :o :backslash]] ;; "ещё"
             ]}
 
         {:des "Apps simple keys" :rules [
